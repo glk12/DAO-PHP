@@ -43,6 +43,8 @@ class Sql extends PDO {
     public function selectOne($id){
 
         $stmt= $this->conn->prepare("SELECT * FROM tb_usuarios WHERE id=:id");
+    
+        $stmt->bindParam(":id",$id);
 
         $stmt->execute();
 
@@ -50,12 +52,11 @@ class Sql extends PDO {
 
         foreach ($results as $key => $value) {
             
-            echo $key.":".$value;
+            echo $key.":".$value."<br/>";
 
         }
 
     }
-
 
     public function update($novologin,$novasenha,$novoid){
 
@@ -73,7 +74,7 @@ class Sql extends PDO {
 
     public function delete($id){
 
-        $stmt= $conn->prepare("DELETE FROM tb_usuarios WHERE id=:id");
+        $stmt= $this->conn->prepare("DELETE FROM tb_usuarios WHERE id=:id");
 
         $stmt->bindParam(":id",$id);
 
