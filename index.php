@@ -1,10 +1,12 @@
 <?php
 
-require_once("config.php");
+require_once('config.php');
 
-$objeto= new Sql();
-$objeto->select();
+$sql=new Sql();
 
+$usuarios= $sql->select();
+
+echo json_encode($usuarios);
 
 
 

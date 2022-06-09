@@ -30,14 +30,8 @@ class Sql extends PDO {
 
         $results= $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($results as $row) {
-
-        foreach ($row as $key => $value) {
-            echo $key.":".$value."<br/>";
-        }
-        echo '______________________________________________________<br/>';
-        }
-
+        return $results;
+         
     }
 
     public function selectOne($id){
@@ -58,17 +52,16 @@ class Sql extends PDO {
 
     }
 
-    public function update($novologin,$novasenha,$novoid){
+    public function update($novologin,$novasenha,$id){
 
         $stmt= $this->conn->prepare("UPDATE tb_usuarios set deslogin=:l, dessenha=:s WHERE id=:id");
 
         $stmt->bindParam(":l",$novologin);
         $stmt->bindParam(":s",$novasenha);
-        $stmt->bindParam(":id",$novoid);
+        $stmt->bindParam(":id",$id);
 
         $stmt->execute();
 
-        echo "Alterado com sucesso!";
 
     }
 
@@ -80,7 +73,6 @@ class Sql extends PDO {
 
         $stmt->execute();
 
-        echo "Linha deletada com sucesso!";
 
 
     }
